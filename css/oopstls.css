@@ -1,0 +1,21 @@
+.code-toolbar:before {
+  content:" ";
+  position:absolute;
+  -webkit-border-radius:50%;
+  border-radius:50%;
+  background:#fc625d;
+  width:11px;
+  height:11px;
+  left:10px;
+  top:10px;
+  -webkit-box-shadow:20px 0 #fdbc40,40px 0 #35cd4b;
+  box-shadow:20px 0 #fdbc40,40px 0 #35cd4b;
+  z-index:2
+}
+
+img:hover {
+  transform: scale(1.2);
+  transition: 0.5s;
+  position: relative;
+  z-index: 1;
+}
