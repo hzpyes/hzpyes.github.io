@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>排序算法效率比较</title>
+    <link href="/posts/0/"/>
+    <url>/posts/0/</url>
+    
+    <content type="html"><![CDATA[<pre><code>include&lt;iostream&gt;include&lt;cstdlib&gt;include&lt;ctime&gt;using namespace std;static int length = 5000;//-----------------冒泡排序---------------------void bubbleSort(int a[])&#123;    for(int i = 0; i &lt; length - 1; i++)&#123;        for(int j = 1; j &lt; length - i; j++)&#123;            if(a[j] &lt; a[j - 1])&#123;                swap(a[j], a[j - 1]);            &#125;        &#125;    &#125;//------------------选择排序---------------------------------    void selectSort(int a[])&#123;    for(int i = 0; i &lt; length - 1; i++)&#123;        int min = i;        for(int j = i+1; j &lt; length; j++)&#123;            if (a[j] &lt; a[min])&#123;                min = j;            &#125;        &#125;        swap(a[i], a[min]);            &#125;&#125;//--------------------归并排序----------------------------------void merge(int a[], int start1, int end1, int start2, int end2)&#123;    int n1 = end1 - start1 + 1;    int n2 = end2 - start2 + 1;    int arr_left[n1], arr_right[n2];    for(int i = 0; i &lt; n1; i++) arr_left[i] = a[start1 + i];    for(int i = 0; i &lt; n2; i++) arr_right[i] = a[start2 + i];    int left = 0, right = 0;    int p = start1;    while(left &lt; n1 &amp;&amp; right &lt; n2)&#123;        if(arr_left[left] &lt; arr_right[right])&#123;            a[p] = arr_left[left++];        &#125;else&#123;            a[p] = arr_right[right++];        &#125;        p++;    &#125;    while(left &lt; n1)&#123;        a[p] = arr_left[left++];        p++;    &#125;    while(right &lt; n2)&#123;        a[p] = arr_right[right++];        p++;    &#125;    &#125;void mergeSort(int a[], int start, int end)&#123;    if(start &lt; end)&#123;    int mid = start + (end -start) / 2;    mergeSort(a, start, mid);        mergeSort(a, mid + 1, end);    merge(a, start, mid, mid + 1, end);    &#125;&#125;//--------------------------快速排序----------------------int partition(int a[], int start, int end)&#123;    int i = start;    int j = end + 1;    int x = a[start];    while(true)&#123;        while(a[++i] &lt; x &amp;&amp; i &lt; j) ;        while(a[--j] &gt; x) ;        if(i &gt;= j)        break;        swap(a[i], a[j]);    &#125;    a[start] = a[j];    a[j] = x;    return j;&#125;void quickSort(int a[], int start, int end)&#123;    if(start &lt; end)&#123;    int q = partition(a, start, end);    quickSort(a, start, q - 1);    quickSort(a, q + 1, end);    &#125;&#125;void timeCost(int a[], int n)&#123;    clock_t start, end;    if(n == 1)&#123;        start = clock();        bubbleSort(a);        end = clock();        cout &lt;&lt; &quot;bubbleSort&#39; time is: &quot;  &lt;&lt; end - start &lt;&lt; &quot;ms&quot; &lt;&lt; endl;    &#125;else if(n == 2)&#123;        start = clock();        selectSort(a);        end = clock();        cout &lt;&lt; &quot;selectSort&#39; time is: &quot;  &lt;&lt; end - start &lt;&lt; &quot;ms&quot; &lt;&lt; endl;    &#125;else if(n == 3)&#123;        start = clock();        quickSort(a, 0, length - 1);        end = clock();        cout &lt;&lt; &quot;quickSort&#39; time is: &quot;  &lt;&lt; end - start &lt;&lt; &quot;ms&quot; &lt;&lt; endl;    &#125;else&#123;        start = clock();        mergeSort(a, 0, length - 1);        end = clock();        cout &lt;&lt; &quot;mergeSort&#39; time is: &quot;  &lt;&lt; end - start &lt;&lt; &quot;ms&quot; &lt;&lt; endl;    &#125;&#125;int main()&#123;        int a[length];    srand((int)time(0));  // 产生随机种子  把0换成NULL也行    for(int i = 0; i &lt; length; i++)&#123;        a[i] = rand();    &#125;    timeCost(a, 1);    timeCost(a, 2);    timeCost(a, 3);    timeCost(a, 4);    return 0;&#125;</code></pre><p>运行图片好像加载不了，总之归并&gt;快排&gt;其他</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/posts/4a17b156/"/>
     <url>/posts/4a17b156/</url>
